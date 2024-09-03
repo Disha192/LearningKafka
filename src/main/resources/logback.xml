@@ -1,0 +1,67 @@
+<!--&lt;!&ndash;<configuration>&ndash;&gt;-->
+<!--&lt;!&ndash;    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">&ndash;&gt;-->
+<!--&lt;!&ndash;        <encoder>&ndash;&gt;-->
+<!--&lt;!&ndash;            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>&ndash;&gt;-->
+<!--&lt;!&ndash;        </encoder>&ndash;&gt;-->
+<!--&lt;!&ndash;    </appender>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <root level="debug">&ndash;&gt;-->
+<!--&lt;!&ndash;        <appender-ref ref="STDOUT" />&ndash;&gt;-->
+<!--&lt;!&ndash;    </root>&ndash;&gt;-->
+<!--&lt;!&ndash;</configuration>&ndash;&gt;-->
+
+<!--<configuration>-->
+<!--    <appender name="KAFKA" class="com.github.danielwegener.logback.kafka.KafkaAppender">-->
+<!--        <topic>PaymentKafkaLogs</topic>-->
+<!--        <producerConfig>-->
+<!--            <property name="bootstrap.servers" value="localhost:9092"/>-->
+<!--            <property name="key.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>-->
+<!--            <property name="value.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>-->
+<!--        </producerConfig>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--    <root level="debug">-->
+<!--        <appender-ref ref="KAFKA" />-->
+<!--    </root>-->
+<!--</configuration>-->
+
+
+<configuration>
+    <!-- Kafka Appender -->
+    <appender name="KAFKA" class="com.github.danielwegener.logback.kafka.KafkaAppender">
+        <topic>PaymentKafkaLogs</topic>
+        <producerConfig>
+            <producerConfigEntry>
+                <key>bootstrap.servers</key>
+                <value>localhost:9092</value>
+            </producerConfigEntry>
+            <producerConfigEntry>
+                <key>key.serializer</key>
+                <value>org.apache.kafka.common.serialization.StringSerializer</value>
+            </producerConfigEntry>
+            <producerConfigEntry>
+                <key>value.serializer</key>
+                <value>org.apache.kafka.common.serialization.StringSerializer</value>
+            </producerConfigEntry>
+            <producerConfigEntry>
+                <key>request.timeout.ms</key>
+                <value>30000</value> <!-- Adjust if needed -->
+            </producerConfigEntry>
+            <producerConfigEntry>
+                <key>delivery.timeout.ms</key>
+                <value>120000</value> <!-- Adjust if needed -->
+            </producerConfigEntry>
+        </producerConfig>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root Logger -->
+    <root level="debug">
+        <appender-ref ref="KAFKA" />
+    </root>
+</configuration>
