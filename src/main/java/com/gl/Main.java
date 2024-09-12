@@ -27,6 +27,7 @@ public class Main {
         AccountService accountService = new AccountServiceImpl(accountDAO, usersDAO);
         TransactionDAO transactionDAO=new TransactionDAOImpl();
         TransactionService transactionService=new TransactionServiceImpl(transactionDAO,usersDAO,accountDAO);
+        System.out.println("Welcome to Payfast");
         while (true) {
             System.out.println("1. Create User");
             System.out.println("2. Create Account");

@@ -26,9 +26,6 @@ public class AuditLogging {
         producer.send(record, (metadata, exception) -> {
             if (exception != null) {
                 System.err.printf("Failed to send record to Kafka: %s%n", exception.getMessage());
-            } else {
-                System.out.printf("Record sent to Kafka: topic=%s partition=%d offset=%d%n",
-                        metadata.topic(), metadata.partition(), metadata.offset());
             }
         });
     }

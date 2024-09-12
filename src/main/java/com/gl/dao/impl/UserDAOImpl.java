@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUsers(User user) throws SQLException {
-        String query = "INSERT INTO users (user_id, name, email, contact_number, address, pin) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO users (user_id, user_name, email, contact_number, address, pin) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = PayFastUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, user.getUser_id());
